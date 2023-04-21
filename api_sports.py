@@ -1,6 +1,10 @@
 import requests
 
-#NFL
+############
+# API SPORT
+# NFL
+# DOCS: https://api-sports.io/documentation/nfl/v1#tag/Games/operation/get-games-statistics-players
+############
 api_key = "831eb8b9f6ca03b6aa6391b978edd7d4" # NFL Trial Key
 base_url = "https://v1.american-football.api-sports.io" #NFL 
 headers = {
@@ -45,11 +49,11 @@ def game_events(id:str)->dict:
     url = f"{base_url}/games/events?id={id}"
     return requests.get(url, headers=headers).json()
 
-def teams_statistic_in_game(id:str, team:str)->dict:
+def teams_statistic_in_game(id:str, team:str=None)->dict:
     url = f"{base_url}/games/statistics/teams?id={id}&team={team}"
     return requests.get(url, headers=headers).json()
 
 # we can take one player or the whole team
-def player_statistic_in_game(id:str, team:str, player:str)->dict:
+def player_statistic_in_game(id:str, team:str=None, player:str=None)->dict:
     url = f"{base_url}/games/statistics/players?id={id}&team={team}&player={player}"
     return requests.get(url, headers=headers).json()
